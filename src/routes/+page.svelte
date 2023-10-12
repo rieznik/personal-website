@@ -1,21 +1,28 @@
 <script>
 	import bg from '$lib/images/bg-main.webp';
+	import { spring } from 'svelte/motion';
+	import { tweened } from 'svelte/motion';
 
-	let cursorPosition = { x: 0, y: 0 };
-
-	const handlePointermove = (e) => {
-		setTimeout(() => {
-			cursorPosition = { x: e.clientX, y: e.clientY };
-		}, 100);
-	};
+	let coords = spring(
+		{ x: 50, y: 50 },
+		{
+			stiffness: 0.04,
+			damping: 0.4
+		}
+	);
 </script>
 
-<div class="background" on:pointermove={handlePointermove}>
+<div
+	class="background"
+	on:mousemove={(e) => {
+		coords.set({ x: e.clientX, y: e.clientY });
+	}}
+	role="none"
+>
 	<div
 		class="spotlight"
-		style="background: radial-gradient(circle at {cursorPosition.x}px {cursorPosition.y}px, #00000000 10px, #000000ee 350px);"
+		style="background: radial-gradient(circle at {$coords.x}px {$coords.y}px, #00000000 10px, #000000ee 250px);"
 	/>
-	<p style="color: white;">Cursor position {cursorPosition.x} & {cursorPosition.y}</p>
 </div>
 
 <style>
@@ -38,5 +45,15 @@
 		left: 0;
 		pointer-events: none;
 		background: #000000ee;
+		animation: pulse 3s ease-in-out infinite alternate forwards;
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(1.1);
+		}
 	}
 </style>
