@@ -1,8 +1,14 @@
 <script>
-	import src from '$lib/images/photo.jpg';
 	import { spring } from 'svelte/motion';
 
-	import Tile from './Tile.svelte';
+	import Tile from '$lib/components/Tile.svelte';
+	import About from '$lib/components/About.svelte';
+	import Ukraine from '$lib/components/Ukraine.svelte';
+	import Linkedin from '$lib/components/Linkedin.svelte';
+	import Github from '$lib/components/Github.svelte';
+	import Mail from '$lib/components/Mail.svelte';
+	import Notes from '$lib/components/Notes.svelte';
+	import Theme from '$lib/components/Theme.svelte';
 
 	let coords = spring(
 		{ x: 50, y: 50 },
@@ -27,16 +33,26 @@
 	<div class="container">
 		<div class="grid">
 			<Tile areaName="about">
-				<img {src} alt="Kateryna Rieznik" class="photo" />
-				<h1>Hi, I'm <span class="name">Kateryna</span>, a developer from Ukraine</h1>
-				<p>Svelte enthusiast ✨ Simple human ✨ Lifelong learner</p>
+				<About />
 			</Tile>
-			<Tile areaName="ukraine" />
-			<Tile areaName="notes" />
-			<Tile areaName="github" />
-			<Tile areaName="linkedin" />
-			<Tile areaName="mail" />
-			<Tile areaName="theme" />
+			<Tile areaName="ukraine">
+				<Ukraine />
+			</Tile>
+			<Tile areaName="notes">
+				<Notes />
+			</Tile>
+			<Tile areaName="github">
+				<Github />
+			</Tile>
+			<Tile areaName="linkedin">
+				<Linkedin />
+			</Tile>
+			<Tile areaName="mail">
+				<Mail />
+			</Tile>
+			<Tile areaName="theme">
+				<Theme />
+			</Tile>
 		</div>
 	</div>
 </div>
@@ -56,25 +72,10 @@
 		padding-top: 100px;
 	}
 
-	.photo {
-		width: 128px;
-		height: 128px;
-		border-radius: 50%;
-	}
-
-	h1 {
-		font-size: 1rem;
-	}
-
-	.name {
-		font-size: 2rem;
-	}
-
 	.background {
 		width: 100vw;
 		height: 100vh;
 		background-image: url('$lib/images/bg-main.webp');
-		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
 	}

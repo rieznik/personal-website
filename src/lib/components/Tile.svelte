@@ -14,10 +14,5 @@
 		background: rgba(0, 59, 124, 0.1);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 30px;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: end;
-		gap: 1.5rem;
 	}
 </style>
