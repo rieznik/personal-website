@@ -1,7 +1,6 @@
 <script>
-	import bg from '$lib/images/bg-main.webp';
+	import src from '$lib/images/photo.jpg';
 	import { spring } from 'svelte/motion';
-	import { tweened } from 'svelte/motion';
 
 	import Tile from './Tile.svelte';
 
@@ -27,7 +26,11 @@
 	/>
 	<div class="container">
 		<div class="grid">
-			<Tile areaName="about" />
+			<Tile areaName="about">
+				<img {src} alt="Kateryna Rieznik" class="photo" />
+				<h1>Hi, I'm <span class="name">Kateryna</span>, a developer from Ukraine</h1>
+				<p>Svelte enthusiast ✨ Simple human ✨ Lifelong learner</p>
+			</Tile>
 			<Tile areaName="ukraine" />
 			<Tile areaName="notes" />
 			<Tile areaName="github" />
@@ -45,34 +48,47 @@
 	}
 
 	.grid {
-		padding-top: 100px;
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: repeat(4, 280px);
 		grid-template-rows: repeat(3, 280px);
+		grid-template-columns: repeat(4, 280px);
 		grid-template-areas: 'about about ukraine notes' 'about about github notes' 'mail theme github linkedin';
+		padding-top: 100px;
+	}
+
+	.photo {
+		width: 128px;
+		height: 128px;
+		border-radius: 50%;
+	}
+
+	h1 {
+		font-size: 1rem;
+	}
+
+	.name {
+		font-size: 2rem;
 	}
 
 	.background {
-		height: 100vh;
 		width: 100vw;
-
+		height: 100vh;
 		background-image: url('$lib/images/bg-main.webp');
-		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
+		background-size: cover;
 	}
 
 	.spotlight {
+		pointer-events: none;
 		position: fixed;
+		top: 0;
+		left: 0;
 		opacity: 1;
 		width: 100vw;
 		height: 100vh;
-		top: 0;
-		left: 0;
-		pointer-events: none;
-		background: #000000ee;
 		animation: pulse 3s ease-in-out infinite alternate forwards;
+		background: #000000ee;
 	}
 
 	@keyframes pulse {

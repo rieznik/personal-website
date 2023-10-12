@@ -2,15 +2,22 @@
 	export let areaName: String;
 </script>
 
-<div class="tile" style="grid-area: {areaName}" />
+<div class="tile" style="grid-area: {areaName}">
+	<slot />
+</div>
 
 <style>
 	.tile {
+		backdrop-filter: blur(20px);
 		width: 100%;
 		height: 100%;
-		border-radius: 30px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
 		background: rgba(0, 59, 124, 0.1);
-		backdrop-filter: blur(20px);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 30px;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		gap: 1.5rem;
 	}
 </style>
